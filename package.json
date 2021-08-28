@@ -6,7 +6,7 @@
   "scripts": {
     "watch": "/home/monkey/.nvm/versions/node/v13.14.0/bin/tsc --watch",
     "build": "/home/monkey/.nvm/versions/node/v13.14.0/bin/tsc",
-    "test": "./node_modules/.bin/lambda-local --timeout 300 --lambda-path ./output/index.js --event-path event.json  --handler getHandler",
+    "test": "./node_modules/.bin/lambda-local --timeout 300 --lambda-path ./output/index.js --event-path event.json  --handler putHandler",
     "bundle": "rm -f web-math-api-lambda.zip; cp node_modules/ -r output/; cd output; zip -r ../web-math-api.lambda.zip *"
   },
   "author": "Scott McCain",

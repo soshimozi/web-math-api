@@ -4,6 +4,76 @@ import { UserDocument } from "../models/user-document";
 import * as AWS from 'aws-sdk'
 const documentClient:DocumentClient = new AWS.DynamoDB.DocumentClient()
 
+export async function addDocument(userName: string, documentName: string, content: string) {
+    
+    console.log('userName', userName)
+    console.log('documentName', documentName)
+    console.log('content', content)
+
+    var params = {
+        TableName: 'web-math-user-document',
+        Key: { userName : userName, documentName: documentName },        
+        UpdateExpression: 'set #content = :content',
+        ConditionExpression: "#userName = :userName and #documentName = :documentName",
+        ExpressionAttributeValues: {":userName": userName, ":documentName" : documentName, ":content": content},
+        ExpressionAttributeNames: {
+            "#userName": "userName",
+            "#documentName": "documentName",
+            "#content": "documentContent"
+        },
+      };
+      
+
+    //   let params = {
+    //     TableName: 'web-math-user-document',
+    //     Key: {
+    //         documentName: documentName,
+    //         userName: userName
+    //     },
+    //     Item: {userName:userName, documentName:documentName, documentContent:content}
+    // }
+
+
+      console.log('about to update!')
+      let result:any = await documentClient.update(params).promise();
+      console.log('result: ', result)
+}
+
+export async function addOrUpdateDocument(userName: string, documentName: string, content: string) {
+    
+    console.log('userName', userName)
+    console.log('documentName', documentName)
+    console.log('content', content)
+
+    // var params = {
+    //     TableName: 'web-math-user-document',
+    //     Key: { userName : userName, documentName: documentName },        
+    //     UpdateExpression: 'set #content = :content',
+    //     ConditionExpression: "#userName = :userName and #documentName = :documentName",
+    //     ExpressionAttributeValues: {":userName": userName, ":documentName" : documentName, ":content": content},
+    //     ExpressionAttributeNames: {
+    //         "#userName": "userName",
+    //         "#documentName": "documentName",
+    //         "#content": "documentContent"
+    //     },
+    //   };
+      
+
+      let params = {
+        TableName: 'web-math-user-document',
+        Key: {
+            documentName: documentName,
+            userName: userName
+        },
+        Item: {userName:userName, documentName:documentName, documentContent:content}
+    }
+
+
+      console.log('about to update!')
+      let result:any = await documentClient.put(params).promise();
+      console.log('result: ', result)
+}
+
 export async function getDocumentsForUser(userName: string): Promise<UserDocument[]> {
 
     let lastEvaluatedKey = null;
