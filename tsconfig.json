@@ -1,0 +1,30 @@
+{
+    "compilerOptions": {
+        "outDir": "./output",
+        "target": "es5",
+        "module": "commonjs",
+        "sourceMap": true,
+        "declaration": true,
+        "pretty": true,
+        "noImplicitThis": true,
+        "alwaysStrict": true,
+        "importHelpers": true,
+        "noImplicitAny": false,
+        "lib": [
+            "es7",
+            "es2017",
+            "es2015"
+        ],
+        "skipLibCheck": true
+    },
+    "include": [
+        "src/**/*"
+    ],
+    "exclude": [
+       "node_modules"
+    ],    
+    "types": [
+        "underscore"
+    ],    
+    "compileOnSave": true
+}
