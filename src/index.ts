@@ -19,20 +19,7 @@ module.exports.putHandler = async (event:any, context:any, callback: any) => {
         return callback(null, response)        
     }
 
-    // does one already exist?
-    // /let result = await DocumentRepository.getDocumentByName(email, documentName)
     await DocumentRepository.addOrUpdateDocument(email, documentName, event.content)
-
-    // if(!result) {
-    //     // adding a new record
-    //     console.log('add new record!')
-        
-
-    // } else {
-    //     // updating existing record
-    //     console.log('updating existing record!')
-    //     await DocumentRepository.addOrUpdateDocument(email, documentName, event.content)
-    // }
 
     return callback(null, {
         statusCode: 200
