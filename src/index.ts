@@ -6,6 +6,9 @@ import * as DocumentRepository from './library/document.repository';
 dotenv.config();
 
 module.exports.putHandler = async (event:any, context:any, callback: any) => {
+
+    console.log('event: ', event)
+
     const token = event['headers']['x-webmath-user-token']
     const documentName = event.documentName
 
