@@ -13,13 +13,14 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@types/jsonwebtoken": "^8.5.5",
+    "@types/underscore": "^1.11.3",
     "aws-sdk": "^2.501.0",
     "axios": "^0.21.1",
     "btoa": "^1.2.1",
     "dotenv": "^8.2.0",
     "jsonwebtoken": "^8.5.1",
     "jwks-rsa": "^2.0.4",
-    "underscore": "^1.9.1",
+    "underscore": "^1.13.1",
     "winston": "^3.2.1"
   },
   "devDependencies": {
